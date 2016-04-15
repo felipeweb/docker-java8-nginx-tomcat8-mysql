@@ -42,9 +42,9 @@ RUN rm -fr /home/root/tomcat/webapps/*
 RUN echo "deb http://apt.newrelic.com/debian/ newrelic non-free" >> /etc/apt/sources.list.d/newrelic.list
 RUN /usr/bin/wget -q -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
 RUN apt-get -qq update
-
+RUN apt-get -qq upgrade
 ### MYSQL (optional startup)
-RUN sudo apt-get install -qq -y mysql-server-5.6 2> /dev/null
+RUN sudo apt-get install -qq -y mysql-server-5.6 2> /dev/null 2> /dev/null
 
 ### NGINX redir to tomcat
 COPY config/nginx-tomcat.conf /etc/nginx/sites-available/default
