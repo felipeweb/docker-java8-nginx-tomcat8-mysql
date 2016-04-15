@@ -26,7 +26,7 @@ RUN echo "America/Sao_Paulo\n" > '/etc/timezone'
 RUN /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata 2> /dev/null
 
 ### less frequent version changes
-RUN apt-get install -qq -y tar unzip zip python-dateutil ant nginx git
+RUN apt-get install -qq -y tar unzip zip python-dateutil maven nginx git
 
 # more frequent version changes
 RUN apt-get install -qq -y oracle-java8-installer mysql-client nodejs
