@@ -32,8 +32,8 @@ RUN apt-get install -qq -y tar unzip zip python-dateutil ant nginx git
 RUN apt-get install -qq -y oracle-java8-installer mysql-client nodejs
 
 ### TOMCAT
-RUN wget -q -O - http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.5/bin/apache-tomcat-8.0.5.tar.gz | tar zxf - -C /home/root/
-RUN ln -s /home/root/apache-tomcat-8.0.5 /home/root/tomcat
+RUN wget -q -O - http://mirror.nbtelecom.com.br/apache/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.tar.gz | tar zxf - -C /home/root/
+RUN ln -s /home/root/apache-tomcat-8.0.33 /home/root/tomcat
 RUN /bin/sed -i 's|<Connector port="8080" pro|<Connector port="8080" compression="on" compressionMinSize="2048" compressableMimeType="text/html,text/xml,text/css,application/javascript" noCompressionUserAgents="gozilla, traviata" pro|' /home/root/tomcat/conf/server.xml
 RUN rm -fr /home/root/tomcat/webapps/*
 
@@ -44,7 +44,7 @@ RUN /usr/bin/wget -q -O- https://download.newrelic.com/548C16BF.gpg | apt-key ad
 RUN apt-get -qq update
 
 ### MYSQL (optional startup)
-RUN sudo apt-get install -qq -y mysql-server 2> /dev/null
+RUN sudo apt-get install -qq -y mysql-server-5.6 2> /dev/null
 
 ### NGINX redir to tomcat
 COPY config/nginx-tomcat.conf /etc/nginx/sites-available/default
